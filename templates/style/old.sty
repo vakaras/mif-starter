@@ -1,0 +1,60 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UTIL                                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{verbatim} % comments
+
+\newcommand\ximage[3]
+{
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[%
+      width=0.8\textwidth, height=10.0cm, keepaspectratio]{#3}
+    \end{center}
+    \caption{#2}
+    \label{#1}
+  \end{figure}
+}
+
+\newcommand\ximagerow[4]
+{
+  \newcommand\ximagecell[3]
+  {
+    \subfloat[##2]
+    {
+      \label{##1}
+      \includegraphics[width=0.9\textwidth/#3]{##3}
+    }
+  }
+  \begin{figure}[H]
+    \centering
+    #4
+    \caption{#2}
+    \label{#1}
+  \end{figure}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TABLES                                                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{pgf}
+\usepackage{pgffor}
+
+\definecolor{myblue}{rgb}{0.8, 0.8, 0.8}
+
+\newwrite\rubyArg
+\newcommand\ruby[2]
+{
+  \immediate\openout\rubyArg = "input.tmp"
+  \immediate\write\rubyArg {#1}
+  \immediate\write\rubyArg {#2}
+  \immediate\closeout\rubyArg
+  \immediate\write18 {./common/rubytex.rb}
+  \input output.tmp
+}
+
+\def\xtable#1{\ruby{xtable}{#1}}
+

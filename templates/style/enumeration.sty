@@ -1,0 +1,21 @@
+<| block style_enumeration |>
+\usepackage{enumerate}
+\usepackage{enumitem}
+\setenumerate{%
+  noitemsep,topsep=0.0cm,parsep=0.0cm,partopsep=0.0cm,leftmargin=0.5cm}
+\setitemize{%
+  noitemsep,topsep=0.0cm,parsep=0.0cm,partopsep=0.0cm,leftmargin=0.5cm}
+
+\newenvironment{InnerEnumerate}
+{
+  \begin{minipage}{\linewidth}
+  \vspace{0.2cm}
+  \begin{enumerate}
+  \setlength\itemsep{0.0cm}
+}
+{
+  \end{enumerate}
+  \vspace{0.2cm}
+  \end{minipage}
+}
+<| endblock |>
