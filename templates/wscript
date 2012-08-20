@@ -1,0 +1,77 @@
+#!/usr/bin/python3
+
+
+import os
+import functools
+
+
+APPNAME = 'XeLaTeX project'
+VERSION = '0.1'
+
+
+top = '.'                               # Project root directory.
+out = os.path.join(top, 'build')        # Project output directory.
+
+
+def _get_project_config(env):
+    """ Returns project configuration as Python dict.
+    """
+    with open(os.path.join(env.TOOLS_DIR, 'defaults', 'config.py')) as fp:
+        config = eval(fp.read())
+    try:
+        file = open(env.CONFIG_FILE)
+    except IOError:
+        pass
+    else:
+        config.update(eval(file.read()))
+    return config
+
+
+def _render_templates(path, templates_names, context):
+    """ Renders template using Jinja2 template engine.
+    """
+    from jinja2 import Environment, FileSystemLoader
+    env = Environment(
+            block_start_string='<' + '|',
+            block_end_string='|' + '>',
+            variable_start_string='<' + '<',
+            variable_end_string='>' + '>',
+            loader=FileSystemLoader(path),
+            )
+    results = []
+    for template_name in templates_names:
+        template = env.get_template(template_name)
+        results.append(template.render(context))
+    return results
+
+
+def _render_task(task):
+    """ Renders task templates.
+    """
+    path = [
+            os.path.join(task.generator.env.CONFIG_DIR, 'templates'),
+            os.path.join(task.generator.env.TOOLS_DIR, 'templates'),
+            ]
+    templates_names = [output.name for output in task.outputs]
+    results = _render_templates(
+            path, templates_names,
+            dict(task.generator.env,
+                **_get_project_config(task.generator.env)),
+            )
+    for output, result in zip(task.outputs, results):
+        print(output.name, output.abspath())
+        output.abspath()
+        with open(output.abspath(), 'w') as outfile:
+            outfile.write(result)
+
+
+def configure(ctx):
+    """ Sets configuration.
+    """
+<< configuration >>
+
+
+def build(ctx):
+    bld = functools.partial(ctx, update_outputs=True)
+    config = _get_project_config(ctx.env)
+    bld(rule=_render_task, target=config['template_files'], always=True)

@@ -1,3 +1,24 @@
+.PHONY: all
+all: env
+	env/bin/python bin/waf
+
+env: bin/waf
+	python3 bin/waf virtualenv --python=python3
+	env/bin/python bin/waf configure
+
+bin:
+	mkdir bin
+
+WAF_EXISTS := $(wildcard bin/waf)
+ifeq ($(strip $(WAF_EXISTS)),)
+bin/waf: bin
+	wget http://waf.googlecode.com/files/waf-1.7.2 -O bin/waf
+else
+bin/waf:
+	@echo "WAF have been already downloaded."
+endif
+
+
 TEXINPUTS := \
 	.:./config:./common:./deps:./content:./examples:./deps/biblatex-iso690:
 export TEXINPUTS
@@ -17,7 +38,7 @@ XELATEX_ARGS=-shell-escape \
 						 "${XARG1}${XARG2}${XARG3}"
 XELATEX_COMMAND=xelatex ${XELATEX_ARGS}
 
-all: prepare config/main.pdf
+#all: prepare config/main.pdf
 
 CONTENT_DIR_EXISTS := $(wildcard content)
 

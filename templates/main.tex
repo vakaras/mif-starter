@@ -1,0 +1,35 @@
+\documentclass[<< document_class_args >>]{<< document_class >>}
+
+\usepackage{style}
+<| block extra_packages |><| endblock |>
+
+\begin{document}
+<| block document |>
+<| block document_configuration_include |>
+  \input{global-config.tex}
+<| endblock |>
+<| block document_make_title |>
+  \maketitle
+<| endblock |>
+<| block document_table_of_contents |>
+  {
+    \singlespacing
+    \tableofcontents
+  }
+<| endblock |>
+<| block document_content_include |>
+  \pagestyle{plain}
+  <| if use_annotation |>
+  \input{annotation.tex}
+  <| endif |>
+  \input{chapters.tex}
+<| endblock |>
+<| block document_bibliography_include |>
+  <| if use_bibliography |>
+  \nocite{*}
+
+  \Bibliography
+  <| endif |>
+<| endblock |>
+<| endblock |>
+\end{document}

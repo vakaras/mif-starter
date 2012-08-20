@@ -1,1 +1,5 @@
-dist
+.lock-waf_linux2_build
+bin/
+build/
+env/
+old/
