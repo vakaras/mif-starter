@@ -30,17 +30,24 @@ def _get_project_config(env):
 def _render_templates(path, templates_names, context):
     """ Renders template using Jinja2 template engine.
     """
-    from jinja2 import Environment, FileSystemLoader
+    from jinja2 import Environment, FileSystemLoader, exceptions
     env = Environment(
             block_start_string='<' + '|',
             block_end_string='|' + '>',
             variable_start_string='<' + '<',
             variable_end_string='>' + '>',
+            comment_start_string='<' + '#',
+            comment_end_string='#' + '>',
             loader=FileSystemLoader(path),
             )
     results = []
     for template_name in templates_names:
-        template = env.get_template(template_name)
+        try:
+            template = env.get_template(template_name)
+        except exceptions.TemplateSyntaxError as e:
+            print('{0.filename} ({0.name}):{0.lineno} {0.message}'.format(
+                e))
+            raise
         results.append(template.render(context))
     return results
 
@@ -65,6 +72,27 @@ def _render_task(task):
             outfile.write(result)
 
 
+def _concat_task(task):
+    """ Renders and concats to single file.
+    """
+    path = [
+            os.path.join(task.generator.env.CONFIG_DIR, 'templates'),
+            os.path.join(task.generator.env.TOOLS_DIR, 'templates'),
+            ]
+    target_template = task.outputs[0].name
+    # FIXME: templates_names = [inpt.name for inpt in task.inputs]
+    config = _get_project_config(task.generator.env)
+    templates_names = config['concat_files'][target_template]
+    context = dict(task.generator.env, **config)
+    results = zip(
+            templates_names,
+            _render_templates(path, templates_names, context,))
+    context['rendered_parts'] = results
+    result = _render_templates(path, (target_template,), context)[0]
+    with open(task.outputs[0].abspath(), 'w') as outfile:
+        outfile.write(result)
+
+
 def configure(ctx):
     """ Sets configuration.
     """
@@ -75,3 +103,6 @@ def build(ctx):
     bld = functools.partial(ctx, update_outputs=True)
     config = _get_project_config(ctx.env)
     bld(rule=_render_task, target=config['template_files'], always=True)
+    for target, sources in config['concat_files'].items():
+        bld(rule=_concat_task, # FIXME: source=sources,
+                target=target, always=True)
