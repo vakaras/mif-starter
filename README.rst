@@ -3,12 +3,36 @@ MIF Starter
 ===========
 
 VU MIF dokumentų XeLaTeX šablonas.
-Struktūra::
 
-    ├── common          – tai kas bendra visiems;
-    ├── config          – konkretaus dokumento individualizavimas;
-    ├── dist            – kompiliavimo katalogas;
-    └── content         – dokumento turinys.
+Idėja
+=====
+
+Šioje saugykloje pateikti įrankiai, kurie padeda kurti XeLaTeX
+dokumentus. Ši saugykla turėtų būti prijungta prie XeLaTeX projekto,
+kaip submodulis. Jei ``${PROJ_DIR}`` yra projekto katalogas, tai::
+
+    git submodule add git://github.com/vakaras/mif-starter.git tools
+
+Realizacija remiasi metodo šablono projektavimo schema: ``mif-starter``
+yra apibrėžti žingsniai, kuriais yra sugeneruojamas dokumentas.
+Norint sukurti savo dokumentą, kai kuriuos iš žingsnių reikia
+perrašyti. Numatytoji XeLaTeX projekto šakninio katalogo struktūra:
+
++   tools – ši saugykla;
++   content – dokumento tekstas, paveikslėliai ir t.t.;
++   bootstrap – scenarijus, kuris inicijuoja įrankius (padarius projekto
+    ``git clone``, turėtų pakakti paleisti bootstrap ir tada make, kad
+    gauti sukompiliuotą dokumentą);
++   config – katalogas, kuriame pateikiami standartinių nustatymų
+    „perrašymai“;
++   extras – katalogas, kuriame pateikiami sistemos praplėtimai, kaip
+    git submoduliai.
+
+Automatiškai sukuriami:
+
++   build – katalogas, kuriame „vyksta“ visi darbai (automatiškai
+    sukuriamas);
++   Makefile – būtiniausios komandos.
 
 Naujo projekto sukūrimas
 ========================
