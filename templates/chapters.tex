@@ -1,4 +1,165 @@
 <| block chapters |>
-\input{examples/introduction.tex}
-\input{examples/examples.tex}
+\Chapter{Įvadas}
+
+TODO: Šis darbas yra…
+
+\section{Darbo tikslas}
+
+TODO
+
+\section{Temos aktualumas}
+
+TODO
+
+\section{Siekiami rezultatai}
+
+TODO
+
+\Chapter{Pavyzdžiai}
+
+\section{Sintaksės paryškinimas}
+
+Python fragmentas:
+\begin{minted}{python}
+def boring(args=None):
+  pass
+\end{minted}
+
+Taip pat vienos eilutės fragmentas: \mint{python}|import this|.
+
+Scala fragmentas:
+\begin{minted}{scala}
+object TimerAnonymous {
+  def oncePerSecond(callback: () => Unit) {
+    while (true) {
+      callback()
+      Thread sleep 1000
+      }
+    }
+  def main(args: Array[String]) {
+    oncePerSecond(
+      () => println("Time flies like an arrow…"))
+    }
+  }
+\end{minted}
+
+\section{Apibrėžimai, lemos, teoremos, pavyzdžiai…}
+
+\subsection{Teiginio su įrodymu pavyzdys}
+
+\begin{prop}
+  Jei $\lim_{x \to a} f(x) = b$ ir $\lim_{x \to a} f(x) = c$, tai $b = c$.
+  \begin{proof}
+    Tarkime priešingai $b \neq c$. Tegu $b < c$.
+
+    Pagal \ref{limfed} apibrėžimą:
+    \begin{align*}
+      \lim_{x \to a} f(x) = b \iff &
+        \forall U_{b}, \exists U_{a} :
+        f(x) \in U_{b}, \forall x(x \in U_{a}) \\
+      \lim_{x \to a} f(x) = c \iff &
+        \forall U_{c}, \exists U'_{a} :
+        f(x) \in U_{c}, \forall x(x \in U'_{a})
+    \end{align*}
+
+    Pastebėkime, kad $U_{a} \cap U'_{a}$ bus taško $a$ aplinka (taško
+    aplinka visada yra netuščia aibė).
+    Fiksuojame tokias $U_{b}$ ir $U_{c}$, kurioms
+    $U_{b} \cap U_{c} = \emptyset$. Bet
+    $\forall x (x \in U_{a} \cap U'_{a}) \implies
+      f(x) \in U_{b} \land f(x) \in U_{c}$, gavome prieštarą.
+  \end{proof}
+\end{prop}
+
+\subsection{Apibrėžimų pavyzdžiai}
+
+\begin{defn}[Funkcijos riba]
+  \label{limfed}
+  Taškas $b$ vadinamas funkcijos $f$ riba taške $a$, jei:
+  \begin{equation*}
+    \forall U_b, \exists U_a : f(x) \in U_b,
+    \forall x (x \in U_a \cap A \setminus \{a\})
+  \end{equation*}
+\end{defn}
+
+\begin{defn}[\XeTeX]
+  \TeX teksto rinkimo variklis \en{\TeX{} typesetting engine} naudojantis
+  Unikodą ir palaikantis modernias šriftų technologijas, tokias kaip
+  OpenType ir AAT.
+\end{defn}
+
+\subsection{Pavyzdžių pavyzdžiai}
+
+\begin{exmp}
+  Raskime $\sin x^{2}$ išvestinę.
+
+  Pažymėkime
+  \begin{align*}
+    f(x) &= \sin x \\
+    g(x) &= x^{2}. \\
+    \intertext{Tada}
+    (f \circ g)(x) &= \sin x^{2}.\\
+    \intertext{Dabar galime pritaikyti išvestinės skaičiavimo formulę:}
+    g'(x) &= (x^{2})' = 2x \\
+    f'(x) &= (\sin x)' = \cos x \\
+    (f \circ g)'(a) &= (\cos x)|_{x = a^{2}} \cdot (2x)|_{x=a}
+      = (\cos a^2)(2a). \\
+    \intertext{Taigi}
+    (\sin x^{2})' &= 2x \cos x^{2}
+  \end{align*}
+
+\end{exmp}
+
+\subsection{Pastabų pavyzdžiai}
+
+\begin{note}
+  $f : A \to \RSET, A \subset \RSET, a(a \in A)$ yra vidinis aibės
+  $A$ taškas.
+\end{note}
+
+\subsection{Žymėjimų pavyzdžiai}
+
+\begin{notation}
+  \begin{align*}
+    f'(a)
+    &\equiv \frac{d f(a)}{dx} \\
+    &\equiv \left. \frac{d f(x)}{dx} \right|_{x = a} \\
+    &\equiv \left. f'(x) \right|_{x = a}.
+  \end{align*}
+\end{notation}
+
+\section{Lentelės}
+
+%\xtable TODO
+%{
+  %w [ 3 | 5 ]
+  %a [ p | p ]
+  %h [ Foo | Bar ]
+  %%
+  %e [ Čia yra nenumeruotas sąrašas: |
+  %@begin{itemize}
+    %@item Kažkas.
+    %@item Kažkas kitas.
+  %@end{itemize}
+  %]
+  %e [O čia yra @strong{matematikos} formulė: |
+  %$@lim _{n @to @infty} @frac{1}{n} = 0$
+  %]
+  %e [ O čia citata: |
+  %@cite&L12&R{bdr97}
+  %]
+  %e [ O čia MIF'iečio elektroninio pašto adresas: |
+  %vardas.pavardė&Amif.stud.vu.lt
+  %]
+%}
+
+\section{Nuorodos į aprašymus}
+
+Pagal \url{http://texblog.org/category/latex/}.
+
+\begin{description}[style=multiline, labelwidth=2.0cm]
+	\item[\namedlabel{itm:rule1}{1 taisyklė}] Su \LaTeX viskas lengva.
+	\item[\namedlabel{itm:rule2}{2 taisyklė}] Kartais tai nėra taip lengva\\
+		$\to$ \ref{itm:rule1}
+\end{description}
 <| endblock |>
