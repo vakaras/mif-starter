@@ -9,6 +9,9 @@
     # style.sty options
     'font': 'Palemonas',
     'page_geometry': 'top=2.0cm, bottom=2.0cm, left=3.0cm, right=1.5cm',
+    'bibliography_resources': [
+        'bibliography.bib',
+        ],
     # other options
     'template_files': [
         'main.tex',
@@ -17,6 +20,7 @@
         'lithuanian.lbx',
         'title.sty',
         'global-config.tex',
+        'bibliography.bib',
         ],
     'concat_files': {
         'style.sty': [
