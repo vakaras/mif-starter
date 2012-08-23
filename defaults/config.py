@@ -3,6 +3,7 @@
     # main.tex options
     'document_class': 'documentation',
     'document_class_args': '12pt, a4paper',
+    'document_language': 'lithuanian',
     'use_annotation': False,
     'use_bibliography': True,
     # style.sty options
@@ -22,6 +23,16 @@
             'style/paragraph.sty',
             # TODO 'style/table.sty',
             'style/enumeration.sty',
+            'style/footnotes.sty',
+            'style/chapters.sty',
+            'style/toc.sty',
+            'style/figures.sty',
+            'style/translations.sty',
+            'style/bibliography.sty',
+            'style/packages.sty',
+            'style/math_operators.sty',
+            'style/commands.sty',
+            'style/theorems.sty',
             ],
         },
     }

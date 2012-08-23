@@ -1,0 +1,45 @@
+<| block style_theorems |>
+
+<| block style_theorems_swapnumbers |>
+% Theorem 1.4 → 1.4 Theorem
+\swapnumbers
+<| endblock |>
+
+<| block style_theorems_proof |>
+\renewenvironment{proof}[1][\proofname]{%
+\hfill \\
+#1 $\vartriangleright$ \\
+\normalfont
+}{%
+\\
+\strut \hfill $\vartriangleleft$ \\
+}
+<| endblock |>
+
+<| block style_theorems_prop |>
+\theoremstyle{plain}
+\newtheorem{prop}{T}
+<| endblock |>
+
+<| block style_theorems_defn |>
+\theoremstyle{definition}
+\newtheorem{defn}{Ap.}
+<| endblock |>
+
+<| block style_theorems_exmp |>
+\theoremstyle{definition}
+\newtheorem{exmp}{Pvz}
+<| endblock |>
+
+<| block style_theorems_note |>
+\theoremstyle{remark}
+\newtheorem*{note}{Pastaba}
+<| endblock |>
+
+<| block style_theorems_notation |>
+\newtheoremstyle{notation}{3pt}{3pt}{}{}{\itshape}{:}{.5em}{}
+\theoremstyle{notation}
+\newtheorem*{notation}{Žymėjimas}
+<| endblock |>
+
+<| endblock |>

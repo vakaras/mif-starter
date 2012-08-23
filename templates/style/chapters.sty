@@ -1,0 +1,37 @@
+<| block style_chapters |>
+<| block style_chapters_counters |>
+\renewcommand{\thechapter}{\arabic{chapter}.}
+\renewcommand{\thesection}{\thechapter\arabic{section}.}
+\renewcommand{\thesubsection}{\thesection\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\thesubsection\arabic{subsubsection}.}
+<| endblock |>
+<| block style_chapters_styles |>
+\usepackage[pagestyles]{titlesec}
+
+\titleformat\chapter{%
+  \normalfont\large\bf\centering\uppercase}{\thechapter}{1em}{}
+\titleformat\section{\large\bf}{\thesection}{1em}{}
+\titleformat\subsection{\normalfont\bf}{\thesubsection}{1em}{}
+\titleformat\subsubsection{\normalfont\bf}{\thesubsubsection}{1em}{}
+\titlespacing\chapter{0.0cm}{*1}{1.0cm}
+<| endblock |>
+<| block style_chapters_commands |>
+\usepackage{xparse}
+
+\NewDocumentCommand \Chapter {s m}
+{
+  \IfBooleanTF {#1}
+    {
+      \chapter*{\uppercase{#2}}
+      \addcontentsline{toc}{chapter}{\uppercase{#2}}
+    }
+    { \chapter{\uppercase{#2}} }
+}
+<| endblock |>
+<| block style_chapters_pagenumbers |>
+\renewpagestyle{plain}
+{
+  \setfoot{}{\hfill{}\thepage}{}
+}
+<| endblock |>
+<| endblock |>
