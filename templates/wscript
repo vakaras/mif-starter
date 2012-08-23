@@ -142,7 +142,39 @@ def build(ctx):
                 '-shell-escape '
                 '-jobname=document '
                 '\"'
-                '\\input{${SRC}}'
+                '\\input{main.tex}'
                 '\"'
                 )
-    bld(rule=xelatex, source='main.tex', target='document.pdf')
+    biber = '${BIBER} document'
+    bld(
+            rule=xelatex,
+            #source=(
+                #glob(os.path.join(out, '*.tex')) +
+                #glob(os.path.join(out, '*.sty')) +
+                #glob(os.path.join(out, '*.cls')) +
+                #glob(os.path.join(ctx.env.CONTENT_DIR, '*'))
+                #),
+            target='document.pdf',
+            name='xelatex1',
+            always=True,
+            )
+    bld(
+            rule=xelatex,
+            #source=(
+                #glob(os.path.join(out, '*.tex')) +
+                #glob(os.path.join(out, '*.sty')) +
+                #glob(os.path.join(out, '*.cls')) +
+                #glob(os.path.join(ctx.env.CONTENT_DIR, '*'))
+                #),
+            target='document.pdf',
+            name='xelatex2',
+            after='xelatex1',
+            always=True,
+            )
+    if config['use_bibliography']:
+        bld(
+                rule=biber,
+                name='biber',
+                before='xelatex2',
+                always=True,
+                )
