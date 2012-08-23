@@ -99,10 +99,33 @@ def configure(ctx):
 << configuration >>
 
 
+def _get_template_path(ctx, file_name):
+    """ Returns path to template file to depend on.
+    """
+    user_path = os.path.join(ctx.env.CONFIG_DIR, 'templates', file_name)
+    default_path = os.path.join(ctx.env.TOOLS_DIR, 'templates', file_name)
+    if os.path.exists(user_path):
+        return user_path
+    else:
+        return default_path
+
+
 def build(ctx):
     bld = functools.partial(ctx, update_outputs=True)
+    glob = ctx.path.ant_glob
     config = _get_project_config(ctx.env)
-    bld(rule=_render_task, target=config['template_files'], always=True)
+
+    bld(
+            rule=_render_task,
+            source=(
+                glob(os.path.join(ctx.env.CONFIG_DIR, 'templates', '*')) +
+                glob(os.path.join(ctx.env.TOOLS_DIR, 'templates', '*'))),
+            target=config['template_files'])
+
     for target, sources in config['concat_files'].items():
-        bld(rule=_concat_task, # FIXME: source=sources,
-                target=target, always=True)
+        files = [_get_template_path(ctx, source) for source in sources]
+        files.append(
+                os.path.join(ctx.env.TOOLS_DIR, 'defaults', 'config.py'))
+        if os.path.exists(ctx.env.CONFIG_FILE):
+            files.append(ctx.env.CONFIG_FILE)
+        bld(rule=_concat_task, source=files, target=target)
