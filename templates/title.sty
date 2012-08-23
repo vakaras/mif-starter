@@ -1,0 +1,84 @@
+\ProvidesPackage{title}
+<| block title |>
+
+% Aukštoji mokykla.
+\def\@schooltitle{%
+Vilniaus universitetas\\
+Matematikos ir informatikos fakultetas\\
+Programų sistemų katedra%
+}
+\newcommand{\schooltitle}[1]{\def\@schooltitle{#1}}
+% Dokumento pavadinimas.
+\def\@docname{Dokumento šablonas}
+\newcommand{\docname}[1]{\def\@docname{#1}}
+\newcommand{\docnameen}[1]{\def\@docnameen{#1}}
+% Dokumento tipas.
+\def\@doctype{Kažkoks tipas}
+\newcommand{\doctype}[1]{\def\@doctype{#1}}
+% Data.
+\def\@date{\the\year}
+
+% Autoriaus vardas.
+\newcommand{\authorname}[1]{\def\@authorname{#1}}
+% Kursas.
+\def\@coursenumber{3}
+\newcommand{\coursenumber}[1]{\def\@coursenumber{#1}}
+% Grupė.
+\def\@groupnumber{2}
+\newcommand{\groupnumber}[1]{\def\@groupnumber{#1}}
+% Darbo vadovas.
+\newcommand{\supervisorname}[1]{\def\@supervisorname{#1}}
+\newcommand{\reviewername}[1]{\def\@reviewername{#1}}
+% Dėstytojas.
+\newcommand{\lecturername}[1]{\def\@lecturername{#1}}
+
+\def\@authorinformation{%
+  \@ifundefined{@authorname}{}{%
+    \begin{tabular}[]{l l c}
+      Atliko: & \@coursenumber{} kurso \@groupnumber{} grupės studentas & \\
+      & \@authorname & \underline{\hspace{2cm}} \\
+      \@ifundefined{@supervisorname}{}{%
+      Darbo vadovas: & \@supervisorname & \underline{\hspace{2cm}} \\
+      }
+      \@ifundefined{@reviewername}{}{%
+      Recenzentas: & \@reviewername & \underline{\hspace{2cm}} \\
+      }
+    \end{tabular}
+    }
+  }
+\newcommand{\authorinformation}[1]{\def\@authorinformation{#1}}
+
+\renewcommand\maketitle{%
+  \begin{titlepage}%
+    \begin{center}
+      % Aukštosios mokyklos padalinio pilnas pavadinimas.
+      \uppercase{
+        \normalsize \expandafter\uppercase\expandafter{\@schooltitle}
+      }
+      \@ifundefined{@docnameen}{%
+      \\[10.0cm]
+      % Dokumento pavadinimas.
+      {\Huge\bf \@docname }\\[0.5cm]
+      }{%
+      \\[6.0cm]
+      % Dokumento pavadinimas.
+      {\Huge\bf \@docname }\\[0.5cm]
+      % Dokumento pavadinimas anglų kalba.
+      {\Large\bf \@docnameen}\\[4.0cm]
+      }
+      % Dokumento tipas.
+      {\Large \@doctype}\\[4.0cm]
+      \@ifundefined{@lecturername}{}{%
+      Dėstytojas: \@lecturername%
+      }
+      % Informacija apie autorių.
+      \@authorinformation
+      % Data.
+      \vfill{%
+      Vilnius – \@date %\\
+      %\tiny{Versija: \docVersionHash{} Atnaujinta: \docVersionTime}%
+      }
+    \end{center}
+  \end{titlepage}%
+  }
+<| endblock |>

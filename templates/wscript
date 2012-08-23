@@ -96,6 +96,7 @@ def _concat_task(task):
 def configure(ctx):
     """ Sets configuration.
     """
+    ctx.load('tex')
 << configuration >>
 
 
@@ -111,6 +112,7 @@ def _get_template_path(ctx, file_name):
 
 
 def build(ctx):
+    ctx.load('tex')
     bld = functools.partial(ctx, update_outputs=True)
     glob = ctx.path.ant_glob
     config = _get_project_config(ctx.env)
@@ -129,3 +131,18 @@ def build(ctx):
         if os.path.exists(ctx.env.CONFIG_FILE):
             files.append(ctx.env.CONFIG_FILE)
         bld(rule=_concat_task, source=files, target=target)
+
+                #'\\\\newcommand{\\docVersionHash}{'
+                #'$(git log -1 --pretty=format:"%%H")}'
+                #'\\\\newcommand{\\docVersionTime}{'
+                #'$(git log -1 --pretty=format:"%%ai")}'
+    xelatex = (
+                '${XELATEX} '
+                '-interaction=batchmode '
+                '-shell-escape '
+                '-jobname=document '
+                '\"'
+                '\\input{${SRC}}'
+                '\"'
+                )
+    bld(rule=xelatex, source='main.tex', target='document.pdf')

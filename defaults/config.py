@@ -14,6 +14,9 @@
         'main.tex',
         'chapters.tex',
         'documentation.cls',
+        'lithuanian.lbx',
+        'title.sty',
+        'global-config.tex',
         ],
     'concat_files': {
         'style.sty': [
