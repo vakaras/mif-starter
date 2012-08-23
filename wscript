@@ -118,7 +118,7 @@ def build(bld):
     for key, value in env.items():
         if key != 'TOOLS_DIR' and (
                 key.endswith('_DIR') or key.endswith('_FILE')):
-            value = os.path.join(env['TOOLS_DIR'], value)
+            value = os.path.normpath(os.path.join(env['TOOLS_DIR'], value))
         lines.append('    ctx.env.{0} = \'{1}\''.format(key, value))
     env.update(_get_project_config(bld.env))
     env['configuration'] = '\n'.join(lines)
