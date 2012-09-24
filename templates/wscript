@@ -176,5 +176,6 @@ def build(ctx):
                 rule=biber,
                 name='biber',
                 before='xelatex2',
+                after='xelatex1',
                 always=True,
                 )
