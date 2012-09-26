@@ -17,6 +17,9 @@ Programų sistemų katedra%
 \newcommand{\doctype}[1]{\def\@doctype{#1}}
 % Data.
 \def\@date{\the\year}
+% Rašymo vieta.
+\def\@location{Vilnius}
+\newcommand{\location}[1]{\def\@location{#1}}
 
 % Autoriaus vardas.
 \newcommand{\authorname}[1]{\def\@authorname{#1}}
@@ -75,7 +78,7 @@ Programų sistemų katedra%
       \@authorinformation
       % Data.
       \vfill{%
-      Vilnius – \@date %\\
+      \@location – \@date %\\
       %\tiny{Versija: \docVersionHash{} Atnaujinta: \docVersionTime}%
       }
     \end{center}
