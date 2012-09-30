@@ -6,6 +6,7 @@
     'document_language': 'lithuanian',
     'use_annotation': False,
     'use_bibliography': True,
+    'extra_packages': [],
     # style.sty options
     'font': 'Palemonas',
     'page_geometry': 'top=2.0cm, bottom=2.0cm, left=3.0cm, right=1.5cm',

@@ -1,7 +1,11 @@
 \documentclass[<< document_class_args >>]{<< document_class >>}
 
 \usepackage{style}
-<| block extra_packages |><| endblock |>
+<| block extra_packages |>
+<| for package, options in extra_packages |>
+\usepackage[<< options >>]{<< package >>}
+<| endfor |>
+<| endblock |>
 
 \begin{document}
 <| block document |>
