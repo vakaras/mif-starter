@@ -107,20 +107,25 @@ class GlossaryEntryWriter(TeXWriter):
                     translation)
 
 
-def main(data_file, tex_file, short_dir):
+def main(data_file, tex_file, short_dir, language):
+    lang_code = {
+            'lithuanian': 'lt',
+            'english': 'en',
+            }[language]
     try:
         os.mkdir(short_dir)
     except OSError:
         pass
     data = eval(open(data_file).read())
-    data.sort(key=lambda entry: locale.strxfrm(entry['lang']['lt'].lower()))
+    data.sort(key=lambda entry:
+            locale.strxfrm(entry['lang'][lang_code].lower()))
     with open(tex_file, 'w') as fp:
         tex = TeXWriter(fp)
         tex.write('\\begin{{longtable}}{{p{{2em}} p{{32em}}}}\n')
         for i, entry in enumerate(data):
             if entry.get('exclude', False):
                 continue
-            writer = GlossaryEntryWriter(fp, entry, i + 1)
+            writer = GlossaryEntryWriter(fp, entry, i + 1, lang_code)
             writer()
             path = os.path.join(short_dir, writer.id + '.tex')
             with open(path, 'w') as sfp:
@@ -130,4 +135,4 @@ def main(data_file, tex_file, short_dir):
 
 if __name__ == '__main__':
     import sys
-    main(sys.argv[1], sys.argv[2], sys.argv[3])
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
