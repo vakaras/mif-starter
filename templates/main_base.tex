@@ -6,6 +6,9 @@
 \usepackage[<< options >>]{<< package >>}
 <| endfor |>
 <| endblock |>
+<| if glossary |>
+\usepackage{pglossary}
+<| endif |>
 
 \begin{document}
 <| block document |>

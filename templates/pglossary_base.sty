@@ -1,0 +1,68 @@
+<| block pglossary |>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pglossary}
+
+<| block packages |>
+\usepackage{pdfcomment}
+\usepackage{longtable}
+<| endblock |>
+
+\newcounter{glossaryCounter}
+
+\makeatletter
+\def\glossaryLabel#1{\begingroup
+  <| block label_text |><| endblock |>
+  }%
+	\phantomsection\label{#1}\endgroup
+}
+\makeatother
+\makeatletter
+\def\pGlossaryLabel#1#2{\begingroup
+  \def\@currentlabel{\textsuperscript{#2}}%
+	\phantomsection\label{#1}\endgroup
+}
+\makeatother
+
+\renewenvironment{glossary}{%
+\setcounter{glossaryCounter}{0}%
+\NewDocumentEnvironment{entry}{m m o o}{%
+\addtocounter{glossaryCounter}{1}%
+\glossaryLabel{glossary:##1}%
+{\noindent <| block label_gls |><| endblock |> \strong{##2}} \par
+}{%
+  \IfNoValueTF{##3}{%
+  }{%
+
+  Angliškai: \emph{##3}
+  }
+  \IfNoValueTF{##4}{%
+  }{%
+
+  Aprašymas: ##4
+  }
+}
+}{%
+}
+
+% Pagal: http://stackoverflow.com/questions/2671079/how-can-i-save-shell-output-to-a-variable-in-latex
+\newread\pGlossaryInput
+\newcommand{\readIntoVar}[1]{%
+\immediate\openin\pGlossaryInput=#1
+% The group localizes the change to \endlinechar
+\bgroup
+  \endlinechar=-1
+  \immediate\read\pGlossaryInput to \localline
+  % Since everything in the group is local, we have to explicitly make the
+  % assignment global
+  \global\let\pGlossaryVar\localline
+\egroup
+\immediate\closein\pGlossaryInput
+}
+
+\newcommand{\gls}[2]{%
+\readIntoVar{gls/#1.tex}%
+\pdfmarkupcomment[markup=Highlight]{#2}{\pGlossaryVar}%
+\ref{glossary:#1}%
+}
+\pdfcommentsetup{color={0.8 0.8 0.8}}
+<| endblock |>

@@ -179,3 +179,15 @@ def build(ctx):
                 after='xelatex1',
                 always=True,
                 )
+    if config['glossary']:
+        pglossary = (
+            'python3 pglossary.py '
+            '\'{0}\' glossary.tex gls'
+            ).format(os.path.join('..', config['glossary']))
+        bld(
+                rule=pglossary,
+                name='pglossary',
+                before='xelatex1',
+                source=(config['glossary'], 'pglossary.py'),
+                target='glossary.tex',
+                )

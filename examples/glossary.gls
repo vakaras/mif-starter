@@ -1,0 +1,187 @@
+# vim: ft=python
+[
+    {
+        'id': 'evolutionary-software-development-process',
+        'lang': {
+            'lt': 'evoliucinis programinės įrangos kūrimo procesas',
+            'en': 'evolutionary software development process',
+            },
+        'long': '''
+            Procesas, kurio metu programinė įranga papildoma nauju
+            funkcionalumu, neliečiant jau egzistuojančio.
+          ''',
+    },
+    {
+        'id': 'component-oriented-software-development',
+        'lang': {
+            'lt': 'komponentinis programinės įrangos kūrimas',
+            'en': 'component oriented software development',
+            },
+        'long': '''
+            Programinės įrangos kūrimo būdas, kai ji yra surenkama
+            iš atskirų, išreikštinai nesusijusių gabalų, kurie yra
+            vadinami komponentais.
+            '''
+    },
+    {
+        'id': 'trait',
+        'lang': {
+            'lt': 'fragmentas',
+            'en': 'trait',
+            },
+        'short': r'''
+            Programavimo kalbos Scala konstrukcija. Scala
+            fragmentai nuo Java sąsajų skiriasi tuo, kad gali turėti
+            metodų realizacijas. Taigi tuo jie primena abstrakčias
+            klases, bet nuo pastarųjų skiriasi tuo, kad jų
+            konstruktoriai negali turėti parametrų.
+          ''',
+        'long': r'''
+            Programavimo kalbos \gls{scala}{Scala} konstrukcija. Scala
+            fragmentai nuo Java sąsajų skiriasi tuo, kad gali turėti
+            metodų realizacijas. Taigi tuo jie primena abstrakčias
+            klases, bet nuo pastarųjų skiriasi tuo, kad jų
+            konstruktoriai negali turėti parametrų.
+          ''',
+    },
+    {
+        'id': 'scala',
+        'lang': {
+            'lt': 'Scala',
+            },
+        'url': r'http://www.scala-lang.org',
+        'long': '''
+            Multiparadigminė programavimo kalba.
+            ''',
+    },
+    {
+        'id': 'modular-mixin-composition',
+        'lang': {
+            'lt': 'modulinė maišos kompozicija',
+            'en': 'modular mixin composition',
+            },
+        'short': r'''
+            Komponentų jungimo būdas, realizuotas programavimo kalboje
+            Scala.
+            ''',
+        'long': r'''
+            Komponentų jungimo būdas realizuotas programavimo kalboje
+            \gls{scala}{Scala}.
+            ''',
+    },
+    {
+        'id': 'class-based-programming-language',
+        'lang': {
+            'lt': 'klasinė programavimo kalba',
+            'en': 'class based programming language',
+            },
+        'wikipedia': r'http://en.wikipedia.org/wiki/Class-based_programming',
+        'short': r'''
+            Objektinė programavimo kalba, kurioje objektai yra
+            apibrėžiami, kaip klasių egzemplioriai. Objektų
+            apibrėžimų dalinimasis yra realizuojamas panaudojant
+            klasių paveldėjimo konstrukciją.
+            ''',
+        'long': r'''
+            \gls{object-oriented-programming-language}{Objektinė
+            programavimo kalba}, kurioje objektai yra apibrėžiami,
+            kaip klasių egzemplioriai.
+            \gls{object-description-sharing-mechanism}{Objektų
+            apibrėžimų dalinimasis} yra realizuojamas panaudojant
+            klasių paveldėjimo konstrukciją.
+            ''',
+    },
+    {
+        'id': 'object-oriented-programming-language',
+        'lang': {
+            'lt': 'objektiškai orientuota programavimo kalba',
+            'en': 'object oriented programming language',
+            },
+        'wikipedia': r'http://en.wikipedia.org/wiki/Object_oriented',
+        'short': r'''
+            Programavimo kalba, su kuria galima programuoti
+            pasinaudojant objekto abstrakcija bei kurioje yra
+            realizuotas objektų apibrėžimų dalinimosi mechanizmas.
+            ''',
+        'long': r'''
+            Programavimo kalba, su kuria galima programuoti
+            pasinaudojant objekto abstrakcija bei kurioje yra
+            realizuotas
+            \gls{object-description-sharing-mechanism}{objektų
+            apibrėžimų dalinimosi mechanizmas}.
+            ''',
+    },
+    {
+        'id': 'object-description-sharing-mechanism',
+        'lang': {
+            'lt': 'objekto apibrėžimo dalinimosi mechanizmas',
+            'en': 'object description sharing mechanism',
+            },
+        'short': r'''
+            Mechanizmas, leidžiantis egzistuojančių objektų
+            apibrėžimus panaudoti apibrėžiant naujus objektus.
+            Objektinėse programavimo kalbose tai gali būti realizuota, kaip
+            delegavimas arba klasių paveldėjimas.
+            ''',
+        'long': r'''
+            Mechanizmas leidžiantis egzistuojančių objektų
+            apibrėžimus panaudoti apibrėžiant naujus objektus.
+            \gls{object-oriented-programming-language}{Objektinėse
+            programavimo kalbose} tai gali būti realizuota, kaip
+            \gls{delegation}{delegavimas} arba
+            \gls{class-inheritance}{klasių paveldėjimas}.
+            ''',
+    },
+    {
+        'id': 'delegation',
+        'lang': {
+            'lt': 'delegavimas',
+            'en': 'delegation',
+            },
+        'short': r'''
+            Objektų apibrėžimų dalinimosi mechanizmas, kai naujas objektas
+            yra apibrėžiamas pasinaudojant jau egzistuojančio objekto
+            apibrėžimu. Šis mechanizmas vadinamas delegavimu, nes
+            neradus žinutę atitinkančio metodo ji yra persiunčiama
+            (deleguojama) tėviniam objektui.
+            ''',
+        'long': r'''
+            \gls{object-description-sharing-mechanism}{Objektų
+            apibrėžimų dalinimosi mechanizmas}, kai naujas objektas
+            yra apibrėžiamas pasinaudojant jau egzistuojančio objekto
+            apibrėžimu. Šis mechanizmas vadinamas delegavimu, nes
+            neradus žinutę atitinkančio metodo ji yra persiunčiama
+            (deleguojama) tėviniam objektui.
+            ''',
+    },
+    {
+        'id': 'class-inheritance',
+        'lang': {
+            'lt': 'klasių paveldėjimas',
+            'en': 'class inheritance',
+            },
+        'short': r'''
+            Objektų apibrėžimų dalinimosi mechanizmas, kai kiekvienas
+            objektas yra laikomas kokios nors klasės egzemplioriumi
+            (tai yra, jis apibrėžiamas pasinaudojant klase), o klasės
+            gali paveldėti savybes vienos iš kitų.
+            ''',
+        'long': r'''
+            \gls{object-description-sharing-mechanism}{Objektų
+            apibrėžimų dalinimosi mechanizmas}, kai kiekvienas
+            objektas yra laikomas kokios nors klasės egzemplioriumi
+            (tai yra, jis apibrėžiamas pasinaudojant klase), o klasės
+            gali paveldėti savybes vienos iš kitų.
+            ''',
+    },
+    #{
+        #'id': '<++>',
+        #'lang': {
+            #'lt': '<++>',
+            #'en': '<++>',
+            #},
+        #'wikipedia': r'<++>',
+        #'long': r'''
+            #''',
+    #},
+]

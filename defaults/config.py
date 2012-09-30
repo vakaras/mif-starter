@@ -6,6 +6,7 @@
     'document_language': 'lithuanian',
     'use_annotation': False,
     'use_bibliography': True,
+    'glossary': 'tools/examples/glossary.gls',
     'extra_packages': [],
     # style.sty options
     'font': 'Palemonas',
@@ -22,6 +23,8 @@
         'title.sty',
         'global-config.tex',
         'bibliography.bib',
+        'pglossary.py',
+        'pglossary.sty',
         ],
     'concat_files': {
         'style.sty': [
