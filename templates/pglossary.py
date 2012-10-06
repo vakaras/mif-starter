@@ -61,6 +61,14 @@ class GlossaryEntryWriter(TeXWriter):
         description = re.sub(r'^\s+', '', description, flags=re.MULTILINE)
         return description.replace('\n', ' ')
 
+    @property
+    def marker(self):
+        """ Returns marker used for marking explained words.
+        """
+        return {
+                'lt': 'Ž',
+                'en': 'W',
+                }[self.default_language]
 
     @property
     def value(self):
@@ -92,13 +100,14 @@ class GlossaryEntryWriter(TeXWriter):
     def write_label(self):
         """
         """
-        self.write('\\pGlossaryLabel{{{s.label}}}{{Ž{s.counter}}}\n')
+        self.write('\\pGlossaryLabel{{{s.label}}}'
+                   '{{{s.marker}{s.counter}}}\n')
 
     def __call__(self):
         """ Prints glossary entry.
         """
         self.write_label()
-        self.write('Ž{s.counter} & \\strong{{{s.value}}} \\\\\n')
+        self.write('{s.marker}{s.counter} & \\strong{{{s.value}}} \\\\\n')
         self.write('&{s.description}\\\\\n')
         for code, translation in sorted(self.translations.items()):
             self.write(
