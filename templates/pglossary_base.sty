@@ -7,42 +7,12 @@
 \usepackage{longtable}
 <| endblock |>
 
-\newcounter{glossaryCounter}
-
-\makeatletter
-\def\glossaryLabel#1{\begingroup
-  <| block label_text |><| endblock |>
-  }%
-	\phantomsection\label{#1}\endgroup
-}
-\makeatother
 \makeatletter
 \def\pGlossaryLabel#1#2{\begingroup
   \def\@currentlabel{\textsuperscript{#2}}%
 	\phantomsection\label{#1}\endgroup
 }
 \makeatother
-
-\renewenvironment{glossary}{%
-\setcounter{glossaryCounter}{0}%
-\NewDocumentEnvironment{entry}{m m o o}{%
-\addtocounter{glossaryCounter}{1}%
-\glossaryLabel{glossary:##1}%
-{\noindent <| block label_gls |><| endblock |> \strong{##2}} \par
-}{%
-  \IfNoValueTF{##3}{%
-  }{%
-
-  Angliškai: \emph{##3}
-  }
-  \IfNoValueTF{##4}{%
-  }{%
-
-  Aprašymas: ##4
-  }
-}
-}{%
-}
 
 % Pagal: http://stackoverflow.com/questions/2671079/how-can-i-save-shell-output-to-a-variable-in-latex
 \newread\pGlossaryInput
