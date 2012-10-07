@@ -48,6 +48,7 @@
         'id': 'scala',
         'lang': {
             'lt': 'Scala',
+            'en': 'Scala',
             },
         'url': r'http://www.scala-lang.org',
         'long': '''
