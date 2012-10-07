@@ -110,10 +110,11 @@ class GlossaryEntryWriter(TeXWriter):
         self.write('{s.marker}{s.counter} & \\strong{{{s.value}}} \\\\\n')
         self.write('&{s.description}\\\\\n')
         for code, translation in sorted(self.translations.items()):
-            self.write(
-                    '&{0}: \\emph{{{1}}}\\\\\n',
-                    {'en': 'Angliškai'}[code],
-                    translation)
+            if self.default_language == 'lt':
+                self.write(
+                        '&{0}: \\emph{{{1}}}\\\\\n',
+                        {'en': 'Angliškai'}[code],
+                        translation)
 
 
 def main(data_file, tex_file, short_dir, language):
