@@ -10,7 +10,7 @@ bin/waf: bin
 	cp << TOOLS_DIR >>/bin/waf bin/waf
 
 show:
-	xdg-open build/document.pdf
+	xdg-open build/document.pdf 1> /dev/null 2> /dev/null
 
 build/c4che:
 	$(WAF) configure
