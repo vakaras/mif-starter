@@ -15,6 +15,13 @@
         'bibliography.bib',
         ],
     # other options
+    'git': [
+        ('dump_log', {
+            'output': 'git_log.tex',
+            'format': r'format:%an & %ai & %s \\',
+            'path': '../tools',
+            }),
+        ],
     'template_files': [
         'main.tex',
         'chapters.tex',

@@ -117,6 +117,17 @@ def build(ctx):
     glob = ctx.path.ant_glob
     config = _get_project_config(ctx.env)
 
+    for command, kwargs in config.get('git', ()):
+        if command == 'dump_log':
+            exe = (
+                    'git log --pretty=\'{format}\' -- '
+                    '{path} >> \'{output}\'').format(**kwargs)
+            bld(rule=exe, always=True,)
+        else:
+            raise Exception("Uknown command: {0}.".format(command))
+
+#git log --pretty="format:%an & %ai & %s" -- logic/content/
+
     bld(
             rule=_render_task,
             source=(
