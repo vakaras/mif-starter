@@ -18,7 +18,7 @@
     'git': [
         ('dump_log', {
             'output': 'git_log.tex',
-            'format': r'format:%an & %ai & %s \\',
+            'format': 'format:%an & %ai & %s \\\\\n',
             'path': '../tools',
             }),
         ],
