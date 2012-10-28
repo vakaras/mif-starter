@@ -131,7 +131,7 @@ def main(data_file, tex_file, short_dir, language):
             locale.strxfrm(entry['lang'][lang_code].lower()))
     with open(tex_file, 'w') as fp:
         tex = TeXWriter(fp)
-        tex.write('\\begin{{longtable}}{{p{{2em}} p{{32em}}}}\n')
+        tex.write('\\begin{{longtable}}{{p{{4em}} p{{30em}}}}\n')
         for i, entry in enumerate(data):
             if entry.get('exclude', False):
                 continue
