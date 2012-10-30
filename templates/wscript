@@ -121,7 +121,9 @@ def build(ctx):
         if command == 'dump_log':
             exe = (
                     'git log --pretty=\'{format}\' -- '
-                    '{path} > \'{output}\'').format(**kwargs)
+                    '{path} | '
+                    'sed -e "s/_/-/g" '
+                    ' > \'{output}\'').format(**kwargs)
             bld(rule=exe, always=True,)
         else:
             raise Exception("Uknown command: {0}.".format(command))
