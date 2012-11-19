@@ -122,7 +122,7 @@ def build(ctx):
             exe = (
                     'git log --pretty=\'{format}\' -- '
                     '{path} | '
-                    'sed -e "s/_/-/g" '
+                    'sed -e "s/_/-/g" -e "s/#/\\\\\\\\#/g"'
                     ' > \'{output}\'').format(**kwargs)
             bld(rule=exe, always=True,)
         else:
