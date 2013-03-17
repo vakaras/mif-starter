@@ -1,5 +1,30 @@
 <| block style_font |>
+<| block style_font_main |>
 \usepackage{fontspec}
 \newfontfamily\sss{<< font >>}
-\setmainfont{<< font >>}
+\setmainfont[Ligatures=TeX]{<< font >>}
+
+% Fonts can be downloaded from here:
+% http://www.gust.org.pl/projects/e-foundry/latin-modern/index_html#download
+% http://www.vlkk.lt/i/u/media/palemonas/Palemonas-2.1.zip
+% After putting them into ~/.fonts directory, recreate cache:
+% sudo fc-cache -f -v
+
+<| endblock |>
+<| block style_font_fixes|>
+% Solution description:
+% http://tex.stackexchange.com/questions/23049/font-substitution-with-xelatex
+
+\newfontfamily{\MissingSubstFont}{Latin Modern Roman}
+
+\XeTeXinterchartokenstate=1
+\newXeTeXintercharclass\MissingSubst
+
+\XeTeXcharclass"2011=\MissingSubst
+
+\XeTeXinterchartoks 0 \MissingSubst = {\begingroup\MissingSubstFont}
+\XeTeXinterchartoks 255 \MissingSubst = {\begingroup\MissingSubstFont}
+\XeTeXinterchartoks \MissingSubst 0 = {\endgroup}
+\XeTeXinterchartoks \MissingSubst 255 = {\endgroup}
+<| endblock |>
 <| endblock |>
