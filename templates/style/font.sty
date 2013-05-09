@@ -14,6 +14,14 @@
 <| block style_font_fixes|>
 % Solution description:
 % http://tex.stackexchange.com/questions/23049/font-substitution-with-xelatex
+% Finding font that has a specific glyph:
+% https://repolinux.wordpress.com/2013/03/10/find-out-fallback-font-used-by-fontconfig-for-a-certain-character/
+% FC_DEBUG=4 pango-view -t '{character}' 2>&1 | \
+%   grep -o 'family: "[^"]\+' | cut -c 10- | tail -n 1
+% Example:
+% FC_DEBUG=4 pango-view -t 'ü' 2>&1 | \
+%   grep -o 'family: "[^"]\+' | cut -c 10- | tail -n 1
+% # Font is displayed only, when the window is closed with by pressing q.
 
 \newfontfamily{\MissingSubstFont}{Latin Modern Roman}
 
