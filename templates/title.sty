@@ -35,7 +35,7 @@ Programų sistemų katedra%
 % Dėstytojas.
 \newcommand{\lecturername}[1]{\def\@lecturername{#1}}
 
-\def\@authorinformation{%
+\def\authorInformationTermPaper{%
   \@ifundefined{@authorname}{}{%
     \begin{tabular}[]{l l c}
       Atliko: & \@coursenumber{} kurso \@groupnumber{} grupės studentas & \\
@@ -48,6 +48,25 @@ Programų sistemų katedra%
       }
     \end{tabular}
     }
+}
+
+\def\authorInformationBachelorThesis{
+  \@ifundefined{@authorname}{}{%
+    \begin{tabular}[]{l l c}
+      Atliko: & \@authorname & \underline{\hspace{2cm}} \\
+      \@ifundefined{@supervisorname}{}{%
+      Darbo vadovas: & \@supervisorname & \underline{\hspace{2cm}} \\
+      }
+      \@ifundefined{@reviewername}{}{%
+      Darbo recenzentas: & \@reviewername & \underline{\hspace{2cm}} \\
+      }
+    \end{tabular}
+    }
+}
+
+\def\@authorinformation{%
+  \authorInformationTermPaper
+  %\authorInformationBachelorThesis
   }
 \newcommand{\authorinformation}[1]{\def\@authorinformation{#1}}
 
