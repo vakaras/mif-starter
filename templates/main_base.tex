@@ -22,6 +22,11 @@
   \input{pre-text.tex}
 <| endblock |>
 <| block document_table_of_contents |>
+  <| if document_language == "lithuanian" |>
+  \ChapterNoTOC{Turinys}
+  <| else |>
+  \ChapterNoTOC{Content}
+  <| endif |>
   {
     \singlespacing
     \tableofcontents

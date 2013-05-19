@@ -27,6 +27,11 @@
     }
     { \chapter{\uppercase{#2}} }
 }
+
+\NewDocumentCommand \ChapterNoTOC {m}
+{
+  \chapter*{\uppercase{#1}}
+}
 <| endblock |>
 <| block style_chapters_pagenumbers |>
 \renewpagestyle{plain}
