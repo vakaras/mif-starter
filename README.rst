@@ -38,39 +38,48 @@ Naujo projekto sukūrimas
 ========================
 
 
-#.  Klonuojame saugyklą::
+#.  Susikuriame projekto saugyklą::
 
-        git clone git://github.com/vakaras/mif-starter.git ${PROJECT}
+        git init
 
-    Čia ``${PROJECT}`` yra katalogo, į kurį bus nukopijuota saugykla
-    pavadinimas.
+#.  Prijungiame šablono saugyklą::
 
-#.  Pakeičiame numatytąją saugyklą (daroma prielaida, kad esame
-    projekto kataloge)::
+        git submodule add git://github.com/vakaras/mif-starter.git tools
 
-        git remote rename origin template
-        git remote add origin ${REPOSITORY}
-        git push -u origin master
+#.  Nustatymai saugomi kataloge ``config``. Numatytieji nustatymai yra
+    surašyti faile ``tools/defaults/config.py``. Juos galima pakeisti
+    susikuriant failą ``config/config.py``. Šablonus esančius
+    ``tools/templates`` galima perdengti sukuriant failus tokiais
+    pačiais vardais kataloge ``config/templates``.
 
-    Čia ``${REPOSITORY}`` yra pagrindinės projekto saugyklos adresas.
+#.  Turinys turėtų būti saugomas kataloge ``content``. Dokumento
+    struktūra turėtų būti nurodyta faile
+    ``config/templates/chapters.tex``. Ji galėtų atrodyti taip::
 
-#.  Pritaikome ``config`` esančius failus pagal savo poreikius.
-#.  Susikuriame naują ``README.md`` failą::
+        <| block chapters |>
+        \newcommand{\chinput}[1]{\input{../content/#1}}
+        \chinput{introduction.tex}
+        \chinput{main.tex}
+        \chinput{conclusions.tex}
+        \Chapter*{Glossary}
+        \input{glossary.tex}
+        <| endblock |>
 
-        touch README.md
+    Jei reikia, galima įterpti tekstą prieš turinį (pavyzdžiui,
+    padėką, santrauką ir pan.) perdengiant failą
+    ``config/templates/pre-text.tex``::
 
-#.  Sukuriame turinio katalogą ``content`` ir nurodome jį naudoti vietoj
-    pavyzdžių::
-
-        mkdir content
-        echo -e '\\chapter{Mano straipsnis}\n' > content/chapters.tex
+        \ChapterNoTOC{Padėka}
+        \ChapterNoTOC{Santrauka}
+        \ChapterNoTOC{Summary}
+        \newpage
 
 ------------------------------
 Titulinio puslapio pritaikymas
 ------------------------------
 
-Pavyzdžiui, jei rašome kursinį darbą, tai į ``config/global-config.tex``
-pridedame::
+Pavyzdžiui, jei rašome kursinį darbą, tai į
+``config/templates/global-config.tex`` pridedame::
 
     \docname{Komponentinis programavimas su Scala}
     \docnameen{Component-based programming with Scala}
@@ -83,6 +92,31 @@ pridedame::
 Taip, pat galima nurodyti ir recenzentą::
 
     \reviewername{Recenzentas}
+
+Bakalaurinio darbo titulinį puslapį galima būtų gauti taip::
+    
+    <| block global_config |>
+    % Dokumento pavadinimas.
+    \docname{Bakalauro darbo pavadinimas}
+    \docnameen{Bakalauro darbo pavadinimas anglų kalba}
+
+    % Dokumento tipas.
+    \doctype{Bakalauro darbas}
+
+    % Informacija apie autorių.
+    \authorname{Vytautas Astrauskas}
+
+    % Informacija apie vadovą.
+    \supervisorname{darbo vadovas}
+
+    % Informacija apie recenzentą.
+    \reviewername{darbo recenzentas}
+
+    \authorinformation{\authorInformationBachelorThesis}
+
+    % Kiti nustatymai.
+    \usemintedstyle{bw}
+    <| endblock |>
 
 Taip pat galima apskritai pakeisti autoriaus informacijos rodymą::
 
