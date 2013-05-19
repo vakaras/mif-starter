@@ -46,6 +46,18 @@ Naujo projekto sukūrimas
 
         git submodule add git://github.com/vakaras/mif-starter.git tools
 
+#.  Nustatome reikiamą šaką::
+        
+        cd tools
+        git checkout waf
+
+#.  Inicializuojame aplinką (vykdyti iš ``tools`` katalogo)::
+
+        make
+        cd ..
+        rm .lock*
+        make
+
 #.  Nustatymai saugomi kataloge ``config``. Numatytieji nustatymai yra
     surašyti faile ``tools/defaults/config.py``. Juos galima pakeisti
     susikuriant failą ``config/config.py``. Šablonus esančius
