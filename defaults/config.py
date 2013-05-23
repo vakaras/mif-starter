@@ -9,6 +9,7 @@
     'glossary': 'tools/examples/glossary.gls',
     'extra_packages': [],
     # style.sty options
+    'debug': True,
     'font': 'Palemonas',
     'page_geometry': 'top=2.0cm, bottom=2.0cm, left=3.0cm, right=1.5cm',
     'bibliography_resources': [

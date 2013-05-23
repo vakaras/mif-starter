@@ -19,10 +19,17 @@
 \makeatother
 
 % Komentarai.
+<| if debug |>
 \definecolor{TODOColor}{rgb}{0.5, 0.2, 0.2}
 \definecolor{FIXMEColor}{rgb}{0.8, 0.1, 0.1}
 \newcommand{\FIXME}[1]{\textcolor{FIXMEColor}{\strong{FIXME:} \emph{#1}}}
 \newcommand{\TODO}[1]{\textcolor{TODOColor}{\strong{TODO:} \emph{#1}}}
 \newcommand{\NFIXME}[1]{\footnote{\strong{FIXME:} #1}}
 \newcommand{\NTODO}[1]{\footnote{\strong{TODO:} #1}}
+<| else |>
+\newcommand{\FIXME}[1]{}
+\newcommand{\TODO}[1]{}
+\newcommand{\NFIXME}[1]{}
+\newcommand{\NTODO}[1]{}
+<| endif |>
 <| endblock |>
