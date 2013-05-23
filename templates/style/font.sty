@@ -23,12 +23,13 @@
 %   grep -o 'family: "[^"]\+' | cut -c 10- | tail -n 1
 % # Font is displayed only, when the window is closed with by pressing q.
 
-\newfontfamily{\MissingSubstFont}{Latin Modern Roman}
+\newfontfamily{\MissingSubstFont}{DejaVu Serif}
 
 \XeTeXinterchartokenstate=1
 \newXeTeXintercharclass\MissingSubst
 
 \XeTeXcharclass"2011=\MissingSubst
+\XeTeXcharclass"266F=\MissingSubst
 
 \XeTeXinterchartoks 0 \MissingSubst = {\begingroup\MissingSubstFont}
 \XeTeXinterchartoks 255 \MissingSubst = {\begingroup\MissingSubstFont}
