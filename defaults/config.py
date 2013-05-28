@@ -6,6 +6,7 @@
     'document_language': 'lithuanian',
     'use_annotation': False,
     'use_bibliography': True,
+    'include_all_bibliography': True,
     'glossary': 'tools/examples/glossary.gls',
     'extra_packages': [],
     # style.sty options
