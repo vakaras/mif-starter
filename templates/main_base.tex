@@ -41,7 +41,9 @@
 <| endblock |>
 <| block document_bibliography_include |>
   <| if use_bibliography |>
+  <| if include_all_bibliography |>
   \nocite{*}
+  <| endif |>
 
   \Bibliography
   <| endif |>
