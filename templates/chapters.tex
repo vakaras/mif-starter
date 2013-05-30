@@ -163,6 +163,31 @@ Pagal \url{http://texblog.org/category/latex/}.
 		$\to$ \ref{itm:rule1}
 \end{description}
 
+Kelių lygių numeruotasis sąrašas:
+\begin{enumerate}
+  \item \label{enum:level:first} Pirmas lygis.
+    \begin{enumerate}
+      \item Tata
+      \item Mata
+      \item Vutu
+      \item \label{enum:level:second} Antras lygis.
+        \begin{enumerate}
+          \item Dada
+          \item Tutu
+          \item Kuku
+          \item VU
+          \item \label{enum:level:third} Trečias lygis.
+          \item LSMU
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+Nuorodą į pirmą lygį: \ref{enum:level:first}.
+
+Nuoroda į antrą lygį: \ref{enum:level:second}.
+
+Nuoroda į trečią lygį: \ref{enum:level:third}.
+
 \section{Žodynėlis}
 
 Nuoroda į žodį žodynėlyje: \gls{trait}{fragmentas}.
