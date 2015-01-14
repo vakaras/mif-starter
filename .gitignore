@@ -1,5 +1,6 @@
-.lock-waf_linux2_build
+.lock-*
 bin/
 build/
 env/
 old/
+.virtualenv/

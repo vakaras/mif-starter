@@ -2,9 +2,22 @@
 all: env
 	env/bin/python bin/waf
 
-env: bin/waf
-	python3 bin/waf virtualenv --python=python3
+#env: bin/waf
+	#python3 bin/waf virtualenv --python=python3
+	#env/bin/python bin/waf configure
+
+env: .virtualenv bin/waf
+	python3 .virtualenv/source/virtualenv.py env
+	env/bin/pip install MarkupSafe Jinja2
 	env/bin/python bin/waf configure
+
+.virtualenv:
+	mkdir -p .virtualenv
+	wget -c \
+		https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.11.6.tar.gz \
+		-O .virtualenv/archive.tar.gz
+	tar -xvf .virtualenv/archive.tar.gz
+	mv virtualenv-* .virtualenv/source
 
 bin:
 	mkdir bin

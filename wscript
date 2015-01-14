@@ -54,7 +54,7 @@ def options(ctx):
 def configure(ctx):
     ctx.find_program('buildout', mandatory=False)
     ctx.find_program('git')
-    ctx.find_program('virtualenv')
+    #ctx.find_program('virtualenv')
     ctx.find_program('python3', var='PYTHON')
 
     #ctx.env.PROJECT_DIR = ctx.options.project_dir
